@@ -1,6 +1,6 @@
 # 📏 Aware: Your Intelligent Posture Companion
 
-**[Hosted on GitHub Pages](https://<your-github-username>.github.io/<repository-name>)**
+**[Hosted on GitHub Pages](https://sushantbajaj.github.io/Aware/)**
 
 ---
 
@@ -24,8 +24,8 @@ By promoting awareness and prevention, **Aware** doesn't just track your posture
 ## 🎯 **How to Use Aware**
 
 1. **Visit the Website**:  
-   - Open the hosted **Aware** application on GitHub Pages. The link to the hosted website will look like this:  
-     `https://<your-github-username>.github.io/<repository-name>`  
+   - Open the hosted **Aware** application on GitHub Pages.  
+     `https://sushantbajaj.github.io/Aware/`  
    - Ensure you're using a modern browser (e.g., Chrome, Firefox, or Edge) with webcam access enabled.
 
 2. **Grant Permissions**:  
