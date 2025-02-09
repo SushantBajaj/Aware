@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aware</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>Aware: Posture Detection System</header>
+
+    <main>
+      <div class="webcam-feed">
+        <div class="webcam-container">
+          <video id="webcam" autoplay></video>
+        </div>
+        <p class="instructions">
+          To begin, take a reference image of your ideal posture.
+        </p>
+        <div style="display: inline-flex; align-items: center">
+          <button id="ref" class="action-button">Take Reference Image</button>
+          <span class="info-icon-inline">
+            ⓘ
+            <div class="tooltip">
+              Takes a reference image for ideal posture detection.
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <h3>Settings</h3>
+
+        <div class="toggle">
+          <label>
+            <input type="checkbox" id="distanceBool" />Distance Detection
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Monitors if you're too close to the screen.
+              </div>
+            </span>
+          </label>
+          <label>
+            <input type="checkbox" id="slouchingBool" />Slouching Detection
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Detects slouching to help improve posture.
+              </div>
+            </span>
+          </label>
+          <label>
+            <input type="checkbox" id="notificationBool" />System Notifications
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">Sends notifications about your posture.</div>
+            </span>
+          </label>
+          <label>
+            <input type="checkbox" id="soundBool" />Sound Notifications
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Plays sound alerts for posture warnings.
+              </div>
+            </span>
+          </label>
+        </div>
+
+        <div class="slider-container">
+          <label>
+            Distance Threshold
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Set the threshold for eye-to-screen distance.
+              </div>
+            </span>
+          </label>
+          <input
+            id="eyeSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            oninput="updateSliderValue('eyeValue', this.value)"
+          />
+          <span id="eyeValue" class="slider-value">50</span>
+        </div>
+
+        <div class="slider-container">
+          <label>
+            Slouching Threshold
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Set the threshold for shoulder position detection.
+              </div>
+            </span>
+          </label>
+          <input
+            id="shoulderSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            oninput="updateSliderValue('shoulderValue', this.value)"
+          />
+          <span id="shoulderValue" class="slider-value">50</span>
+        </div>
+        <div class="slider-container">
+          <label>
+            Distance Alert Time (seconds)
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Set the time delay before alerting when you're too close.
+              </div>
+            </span>
+          </label>
+          <input
+            id="eyeAlertTimeSlider"
+            type="range"
+            min="1"
+            max="30"
+            value="1"
+            oninput="updateSliderValue('eyeAlertTimeValue', this.value)"
+          />
+          <span id="eyeAlertTimeValue" class="slider-value">1</span>
+        </div>
+
+        <div class="slider-container">
+          <label>
+            Slouching Alert Time (seconds)
+            <span class="info-icon">
+              ⓘ
+              <div class="tooltip">
+                Set the time delay before alerting when you're slouching.
+              </div>
+            </span>
+          </label>
+          <input
+            id="shoulderAlertTimeSlider"
+            type="range"
+            min="1"
+            max="30"
+            value="1"
+            oninput="updateSliderValue('shoulderAlertTimeValue', this.value)"
+          />
+          <span id="shoulderAlertTimeValue" class="slider-value">1</span>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="main.js"></script>
+    <script>
+      function updateSliderValue(id, value) {
+        document.getElementById(id).textContent = value;
+      }
+    </script>
+  </body>
+</html>
